@@ -1,8 +1,18 @@
 const collectionServices = require('../../src/services/collections');
+const entriesServices = require('../services/entries.js');
 
 const getAllCollections = async (req, res) => {
   try {
     const collections = await collectionServices.getAllCollections();
+    res.status(200).json(collections);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+const getAllCollectionNames = async (req, res) => {
+  try {
+    const collections = await collectionServices.getAllCollectionNames();
     res.status(200).json(collections);
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -38,6 +48,15 @@ const updateCollection = async (req, res) => {
 
     // If both oldFiend & newField are present => replace
     if (oldField && newField) {
+      const records = await entriesServices.getAllEntriesById(id);
+      if (records.length > 0) {
+        res
+          .status(400)
+          .json({
+            error:
+              'Cannot update field name. There are records in this collection.',
+          });
+      }
       const collection = await collectionServices.getCollectionById(id);
       if (collection) {
         const { fields } = collection;
@@ -48,12 +67,18 @@ const updateCollection = async (req, res) => {
     }
 
     // If only oldField is present => delete
-    else if (oldField){
+    else if (oldField) {
       const collection = await collectionServices.getCollectionById(id);
       if (collection) {
         let { fields } = collection;
-        fields = fields.filter(eachField => eachField !== oldField);
+        fields = fields.filter((eachField) => eachField !== oldField);
         req.body.fields = fields;
+      }
+
+      const entries = await entriesServices.getAllEntriesById(id);
+      for await (const eachEntry of entries) {
+        delete eachEntry.dataValues.record[oldField];
+        await entriesServices.updateEntry(eachEntry.id, eachEntry.dataValues);
       }
     }
 
@@ -64,6 +89,12 @@ const updateCollection = async (req, res) => {
         const { fields } = collection;
         fields.push(newField);
         req.body.fields = fields;
+      }
+
+      const entries = await entriesServices.getAllEntriesById(id);
+      for await (const eachEntry of entries) {
+        eachEntry.dataValues.record[newField] = '';
+        await entriesServices.updateEntry(eachEntry.id, eachEntry.dataValues);
       }
     }
 
@@ -92,6 +123,7 @@ const deleteCollection = async (req, res) => {
 
 module.exports = {
   getAllCollections,
+  getAllCollectionNames,
   createCollection,
   getCollectionById,
   updateCollection,

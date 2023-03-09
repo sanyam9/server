@@ -5,6 +5,13 @@ const getAllCollections = async () => {
   return collections;
 };
 
+const getAllCollectionNames = async () => {
+  const collections = await db.collections.findAll({
+    attributes: ['name'],
+  });
+  return collections;
+};
+
 const createCollection = async (collection) => {
   const newCollection = await db.collections.create(collection);
   return newCollection;
@@ -34,6 +41,7 @@ const deleteCollection = async (id) => {
 
 module.exports = {
   getAllCollections,
+  getAllCollectionNames,
   createCollection,
   getCollectionById,
   updateCollection,

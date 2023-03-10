@@ -14,5 +14,13 @@
     "host": "localhost",
     "dialect": "postgres",
     "port": 5433
+  },
+  "docker": {
+    "username": "postgres",
+    "password": "sanyam1969",
+    "database": "cms",
+    "host": "cms-db",
+    "dialect": "postgres",
+    "port": 5432
   }
 }

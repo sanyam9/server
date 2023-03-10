@@ -7,7 +7,7 @@ const getAllCollections = async () => {
 
 const getAllCollectionNames = async () => {
   const collections = await db.collections.findAll({
-    attributes: ['name'],
+    attributes: ['id','name'],
   });
   return collections;
 };

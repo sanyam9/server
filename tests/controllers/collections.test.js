@@ -1,5 +1,4 @@
 const collectionServices = require('../../src/services/collections');
-const entriesServices = require('../../src/services/entries');
 const { describe, it, expect } = require('@jest/globals');
 
 describe('Collections Controllers', () => {

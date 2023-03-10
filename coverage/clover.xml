@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1678464301261" clover="3.2.0">
-  <project timestamp="1678464301261" name="All files">
+<coverage generated="1678464653033" clover="3.2.0">
+  <project timestamp="1678464653033" name="All files">
     <metrics statements="64" coveredstatements="44" conditionals="10" coveredconditionals="7" methods="17" coveredmethods="7" elements="91" coveredelements="58" complexity="0" loc="64" ncloc="64" packages="2" files="5" classes="5"/>
     <package name="models">
       <metrics statements="31" coveredstatements="30" conditionals="10" coveredconditionals="7" methods="7" coveredmethods="7"/>
@@ -72,19 +72,19 @@
       </file>
       <file name="entries.js" path="/Users/Sanyam_Sharma/Evaluation4/server/src/services/entries.js">
         <metrics statements="13" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="0"/>
-        <line num="1" count="2" type="stmt"/>
-        <line num="3" count="2" type="stmt"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
         <line num="4" count="0" type="stmt"/>
         <line num="7" count="0" type="stmt"/>
-        <line num="10" count="2" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
         <line num="11" count="0" type="stmt"/>
         <line num="12" count="0" type="stmt"/>
-        <line num="15" count="2" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
         <line num="16" count="0" type="stmt"/>
-        <line num="19" count="2" type="stmt"/>
+        <line num="19" count="1" type="stmt"/>
         <line num="20" count="0" type="stmt"/>
         <line num="24" count="0" type="stmt"/>
-        <line num="27" count="2" type="stmt"/>
+        <line num="27" count="1" type="stmt"/>
       </file>
     </package>
   </project>
